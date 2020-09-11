@@ -164,9 +164,9 @@ console.log(lam.speak());
 class Instructor extends Lambdasian {
   constructor(info) {
     super(info);
-    this.name = info.name;
-    this.age = info.age;
-    this.location = info.location;
+    // this.name = info.name;
+    // this.age = info.age;
+    // this.location = info.location;
     this.specialty = info.specialty;
     this.favLanguage = info.favLanguage;
     this.catchPhrase = info.catchPhrase;
@@ -187,6 +187,7 @@ const instructor1 = new Instructor({
   favLanguage: "Java",
   catchPhrase: "Keep Going",
 });
+// console.log(instructor1.name);
 
 console.log(instructor1.demo("Java"));
 console.log(instructor1.grade({ name: "Jose", age: 420 }, "Java"));
@@ -208,24 +209,22 @@ console.log(instructor1.grade({ name: "Jose", age: 420 }, "Java"));
 class Student extends Lambdasian {
   constructor(info) {
     super(info);
-    this.name = info.name;
-    this.age = info.age;
+    // this.name = info.name;
+    // this.age = info.age;
     this.previousBackground = info.previousBackground;
     this.className = info.className;
     this.favSubjects = info.favSubjects;
   }
 
-  listSubjects(){
-    
+  listSubjects() {
     return this.favSubjects;
   }
-  PRAssignment(subject){
-    return `${this.name} has submitted a PR for ${subject}`
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
   }
-  sprintChallenge( subject){
-    return `${this.name} has begun sprint challenge on ${subject}`
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
-
 }
 
 const student1 = new Student({
@@ -234,7 +233,7 @@ const student1 = new Student({
   location: "USA",
   previousBackground: "Insurace Adjuster",
   className: "WebDev Fundamentals",
-  favSubjects: ["Data Structures", "CSS", "Arrays"]
+  favSubjects: ["Data Structures", "CSS", "Arrays"],
 });
 
 console.log(student1.listSubjects());
@@ -253,10 +252,34 @@ console.log(student1.sprintChallenge("Data Structures II"));
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager extends Instructor{
-  
+class ProjectManager extends Instructor {
+  constructor(info) {
+    super(info);
+    this.gradClassName = info.gradClassName;
+    this.favInstructor = info.favInstructor;
+  }
+  standUp(slackC) {
+    return `${this.name} announces to ${slackC}, @channel standy times!`;
+  }
+
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
 
+const projectMan1 = new ProjectManager({
+  name: "Damian",
+  age: 52,
+  location: "USA",
+  specialty: "Security",
+  favLanguage: "Python",
+  catchPhrase: "I ain't going no-where",
+  gradClassName: "CS2",
+  favInstructor: "Ms. Tyson",
+});
+
+console.log(projectMan1.standUp("Devs"));
+console.log(projectMan1.debugsCode({ name: "Jose", age: 420 }, "Java"));
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
